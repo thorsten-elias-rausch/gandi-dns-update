@@ -52,12 +52,13 @@ class Config:
 
 
 def load_config(path: str) -> Config | None:
+    log(f"Loading config at path '{path}'...")
     try:
         with open(path) as file:
             data = json.load(file)
         config = Config(**data)
     except Exception as exception:
-        log(f"Failed to reload config: {exception}")
+        log(f"Failed to load config: {exception}")
         traceback.print_exc()
         return None
 
